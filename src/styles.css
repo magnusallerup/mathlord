@@ -1,1 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {height: 100%; }
+body { background-color: rgb(89, 64, 112); margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif}
+  
+  .center-container {
+    display: flex;
+    justify-content: center;  /* Centers horizontally */
+    align-items: center;      /* Centers vertically */
+    height: 100vh;            /* Full viewport height */
+    text-align: center;       /* Ensures text is centered */
+  }
+  .container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px; /* Adds space between elements */
+  }
+  
+  input {
+    width: 80px;
+    height: 30px;
+    font-size: 24px;
+    padding: 8px;
+    color: black;
+  }
+  
+  p {
+    font-size: 36px;
+    color: aliceblue;
+  }
+  
+  .top-container {
+    place-items: start center; /* Aligns at the top and centers horizontally */
+    padding-top: 20px;
+    text-align: center;
+  }
+
+  h1 {
+    color:aliceblue
+  }
