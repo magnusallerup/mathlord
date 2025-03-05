@@ -3,12 +3,18 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
+
 export class MathService {
+   
+  val1 = 1;
+  val2 = 1;
+  operators = ['+','-','*']; 
   
-  genQuestion (){(Math.floor(Math.random() * 10))}
+  randomNumber(max: number) {
+    return Math.floor(Math.random() * max + 1);
+  }
 
-  
-
-  constructor() {
-   }
+  genOperators(o: Array<string>){
+    return o[Math.floor(Math.random() * 3)]    
+  }
 }
