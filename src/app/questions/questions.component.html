@@ -1,7 +1,11 @@
 <div class="container">
     <p>{{question}}</p>
     <input type="text" [(ngModel)] = "answer" (keyup)="checkAnswer()">
-    
+    <button (click)="newQuestion()">Nyt spørgsmål</button>
 </div>
 
-
+<div class="container">
+    <button [ngClass]="(add) ? 'btn btn-primary' : 'btn btn-outline-primary'" (click)="toggleAdd()" (click)="toggleOperator(1,'+')">+</button>
+    <button [ngClass]="(sub) ? 'btn btn-primary' : 'btn btn-outline-primary'" (click)="toggleSub()" (click)="toggleOperator(0,'-')">-</button>
+    <button [ngClass]="(mul) ? 'btn btn-primary' : 'btn btn-outline-primary'" (click)="toggleMul()" (click)="toggleOperator(2,'⋅')">⋅</button>
+</div>
