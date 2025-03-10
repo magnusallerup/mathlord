@@ -31,15 +31,19 @@ export class QuestionsComponent implements OnInit {
     [0, '-'],
     [1, '+'],
     [2, '⋅'],
+    [3, '/']
   ]);
   answer = '';
   val1 = 1;
   val2 = 2;
+  randomLim = 20;
   question = '';
   operator = '';
   add = true;
   sub = true;
   mul = true;
+  div = true;
+
 
   toggleAdd() {
     this.add = !this.add;
@@ -49,6 +53,9 @@ export class QuestionsComponent implements OnInit {
   }
   toggleMul() {
     this.mul = !this.mul;
+  }
+  toggleDiv() {
+    this.div = !this.div;
   }
 
   checkAnswer() {
@@ -63,6 +70,10 @@ export class QuestionsComponent implements OnInit {
       }
       case '⋅': {
         this.checkAnswerMultiply();
+        break;
+      }
+      case '/': {
+        this.checkAnswerDivision();
         break;
       }
     }
@@ -86,18 +97,31 @@ export class QuestionsComponent implements OnInit {
 
   newQuestion() {
     this.operator = this.maff.genOpsMap(this.operators) ?? '';
-    this.val1 = this.maff.randomNumber(20);
+    this.val1 = this.maff.randomNumber(this.randomLim);
 
     if (this.operator == '-') {
       do {
-        this.val2 = this.maff.randomNumber(20);
+        this.val2 = this.maff.randomNumber(this.randomLim);
         console.log(this.val2);
       } while (this.val2 > this.val1);
-    } else {
-      this.val2 = this.maff.randomNumber(20);
+    } 
+    else if (this.operator == '/') {
+      const { dividend, divisor } = this.maff.genDivision(this.randomLim);
+      this.val1 = dividend; // dividend becomes val1
+      this.val2 = divisor;  // divisor becomes val2
+      
+    }
+    
+    else {
+      this.val2 = this.maff.randomNumber(this.randomLim);
     }
     this.question = `${this.val1} ${this.operator} ${this.val2}`;
   }
+
+  
+
+  
+
 
   checkAnswerAdd() {
     if (Number(this.answer) == this.val1 + this.val2) {
@@ -115,6 +139,13 @@ export class QuestionsComponent implements OnInit {
 
   checkAnswerMultiply() {
     if (Number(this.answer) == this.val1 * this.val2) {
+      this.newQuestion();
+      this.answer = '';
+    }
+  }
+
+  checkAnswerDivision() {
+    if (Number(this.answer) == this.val1 / this.val2) {
       this.newQuestion();
       this.answer = '';
     }
